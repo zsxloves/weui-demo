@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width = device-width,initial-scale = 1,user-scalable = 0 ">
+		<title></title>
+		<link rel="stylesheet" href="css/weui.css" />
+		<style type="text/css">
+			#yx .weui-cell__ft i{
+				float: left;
+				display: none;
+			}
+			#yx .weui-cell__ft i:nth-child(1),#random .weui-cell__ft i:nth-child(1){
+				line-height: 20px;
+			}
+			#yx .weui-cell__ft i:not(:first-child){
+				margin-left: 10px;
+			}
+			#random i,#random img{
+				float: left;
+			}
+			#random i{
+				display: none;
+			}
+			#random img{
+				margin-left: 5px;
+			}
+		</style>
+	</head>
+	<body ontouchstart="">
+		<script type="text/javascript" src="js/weui.min.js"></script>
+		<script type="text/javascript" src="js/zepto.min.js"></script>
+		<div class="weui-cell" style="background: #353535;">
+			<a class="weui-cell__hd" style="color: #fff;" href="find.html">
+				<i class="iconfont icon-fanhui"></i>返回
+			</a>
+			<div class="weui-cell__bd" style="text-align: center;color: #fff;">通过Email</div>
+			<div class="weui-cell__ft" style="visibility:hidden;">
+				<i class="iconfont icon-fanhui"></i>返回
+			</div>
+		</div>
+		<div class="weui-panel" style="margin-top: 0;">
+			<div class="weui-panel__hd zl" style="text-align: center;font-size: 16px;">
+				该邮箱用于确认你的身份，以确保您的账号安全
+			</div>
+			<div class="weui-panel__bd">
+				<div class="weui-cells" style="margin-top: 0;">
+					<div class="weui-cell weui-cells_form" id="yx">
+						<div class="weui-cell__hd">
+							<label class="weui-label">邮箱</label>
+						</div>
+						<div class="weui-cell__bd">
+							<input class="weui-input" placeholder="请输入登录邮箱">
+						</div>
+						<div class="weui-cell__ft">
+							<i class="weui-icon-clear fh"></i>
+							<i class="weui-icon-warn fh"></i>
+						</div>
+					</div>
+					<div class="weui-cell weui-cells_form" id="random">
+						<div class="weui-cell__hd">
+							<label class="weui-label">随机码</label>
+						</div>
+						<div class="weui-cell__bd">
+							<input class="weui-input" placeholder="输入右图的随机码">
+						</div>
+						<div class="weui-cell__ft">
+							<i class="weui-icon-clear fh"></i>
+							<i class="weui-icon-warn fh"></i>
+							<img src="imgs/yzm1.jpg" class="yyz"/>
+						</div>
+					</div>
+					<div class="weui-cell" style="border-bottom: 1px solid #e5e5e5;">
+						<button id="tj" class="weui-btn weui-btn_primary">下一步</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	    <div id="fail" style="opacity: 0;display: none;">
+	        <div class="weui-mask_transparent"></div>
+	        <div class="weui-toast">
+	            <i class="weui-icon-warn weui-icon_msg weui-icon_toast" style="font-size: 65px;"></i>
+	            <p class="weui-toast__content">邮箱格式或验证码错误</p>
+	        </div>
+	    </div>
+	</body>
+	<script type="text/javascript">
+		$("#yx input").blur(function yzyx(){
+			var yreg=/^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/;
+			var txt=$("#yx input").val();
+			if(yreg.test(txt)){
+				$("#yx .fh").eq(0).show().siblings().hide();
+				$("#yx .weui-label").css("color","#000");
+				count2=1;
+			}else{
+				$("#yx .weui-label").css("color","red");
+				if(txt==""||txt==null){
+					$("#yx .fh").eq(1).show().siblings().hide();
+				}else{
+					$("#yx .fh").eq(1).show().siblings().show();
+				}
+			}
+		})
+		$("#random input").blur(function yzyx(){
+			var txt=$(this).val();
+			if(txt==""||txt==null){
+				$("#random .fh").eq(1).show().siblings(0).hide();
+				$("#random .weui-label").css("color","red");
+			}else{
+				$("#random .weui-label").css("color","#000");
+				$("#random .fh").eq(0).show();
+				$("#random .fh").eq(1).hide();
+			}
+		})
+		//图片点击
+		var count=1;
+		var arr=["bl88d","6n8bl","8r4ph"];
+		var arnr=arr[0];
+		$(".yyz").click(function(){
+			if(count==3){
+				count=1;
+			}else{
+				count++;
+			}
+			$(".yyz").attr("src","imgs/yzm"+count+".jpg");
+			arnr=arr[i-1];
+		})
+		var clea=$(".weui-icon-clear");
+		for(var i=0;i<clea.length;i++){
+			clea[i].index=i;
+			clea[i].onclick=function(){
+				$(".weui-input").eq(this.index).val("");
+				clea[this.index].style.display="none";
+			}
+		}
+		$("#tj").click(function(){
+			var sj=$("#random input").val();
+			var yx=$("#yx input").val();
+			var yxx=sj.toLocaleLowerCase();
+			var fail = $("#fail");
+			var sjj=sessionStorage.getItem("email");
+			if(yxx==arnr){
+				open("yznext.html","_self");
+			}else{
+            	if (fail.css('display') != 'none') return;
+	            fail.fadeIn(100);
+	            setTimeout(function () {
+	                fail.fadeOut(100);
+	            }, 2000);
+			}
+		})
+	</script>
+</html>
+

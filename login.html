@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width = device-width,initial-scale = 1,user-scalable = 0 ">
+		<title></title>
+		<link rel="stylesheet" href="css/weui.css" />
+		<link rel="stylesheet" href="//at.alicdn.com/t/font_787756_o9u7l5tkru.css" />
+		<link rel="stylesheet" type="text/css" href="font/iconfont.css"/>
+		<style type="text/css">
+			input::-webkit-input-placeholder{text-align: center;}
+			input::-ms-input-placeholder{text-align: center;}
+			.tb i{
+				display: none;
+			}
+			.weui-actionsheet__menu i{
+				margin-right: 5px;
+			}
+		</style>
+	</head>
+	<body ontouchstart="" style="background: #ddd;">
+		<script type="text/javascript" src="js/weui.min.js"></script>
+		<script type="text/javascript" src="js/zepto.min.js"></script>
+		
+		<!--头部导航-->
+		<div class="weui-navbar" style="background: #aaa;">
+			<div class="weui-cell" style="width: 100%;">
+				<div class="weui-cell__hd">
+					<i class="iconfont icon-guanbi"></i>
+				</div>
+				<div class="weui-cell__bd" style="color: #fff;margin-left: 5px;">
+					<p>智学无忧教育系统</p>
+				</div>
+				<div class="weui-cell__ft">
+					<i class="iconfont icon-gengduo"></i>
+				</div>
+			</div>
+		</div>
+		<div id="bb">
+			<!--logo-->
+			<div class="weui-panel weui-panel_access" style="margin-top:46px;text-align: center;background: #ddd;">
+				<div class="weui-panel__hd" style="">
+					<img src="imgs/logo.png"  style="width: 100px;height: 100px;"/>
+					<h2 style="margin-top: 20px;color:#008080;">学员登录</h2>
+				</div>
+			</div>
+			<!--账号密码-->
+			<div class="" style="background: #fff;border-bottom:1px solid #e5e5e5;">
+				<div class="weui-cell">
+					<div class="weui-cell__hd" style="margin-right: 10px;">
+						<i class="iconfont icon-zhuanjifenxinzhuce"></i>
+					</div>
+					<div class="weui-cell__bd">
+						<input class="weui-input" type="tel" placeholder="请输入手机号" id="phone">
+					</div>
+					<div class="weui-cell__ft">
+						<div class="weui-cell__ft tb">
+							<i class="weui-icon-clear"></i>
+							<i class="weui-icon-success"></i>
+							<i class="weui-icon-warn"></i>
+						</div>
+					</div>
+				</div>
+				<div class="weui-cell">
+					<div class="weui-cell__hd" style="margin-right: 10px;">
+						<i class="iconfont icon-mima"></i>
+					</div>
+					<div class="weui-cell__bd">
+						<input class="weui-input" type="password" placeholder="请输入六位以上的密码" id="pass">
+					</div>
+					<div class="weui-cell__ft">
+						<div class="weui-cell__ft tb">
+							<i class="weui-icon-clear"></i>
+							<i class="weui-icon-success"></i>
+							<i class="weui-icon-warn"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+			<script type="text/javascript">
+				var reg=/^1[3,5,9]\d{9}$/;
+				var res=/^\w{6,}$/;
+				
+				$("#phone").focus(function(){
+					$(".tb>i").eq(0).show().siblings().hide();
+				})
+				$("#pass").focus(function(){
+					$(".tb>i").eq(3).show().siblings().hide();
+				})
+				$(".tb>i").eq(0).click(function(){
+					$("#phone").val("");
+				})
+				$(".tb>i").eq(3).click(function(){
+					$("#phone").val("");
+				})
+				$("#phone").blur(function(){
+					var nr=$("#phone").val();
+					if(nr==null||nr==""){
+						$(".tb>i").eq(2).show().siblings().hide();
+					}else if(!reg.test(nr)){
+						$(".tb>i").eq(0).show().siblings().hide();
+					}else{
+						$(".tb>i").eq(1).show().siblings().hide();
+					}
+				})
+				$("#pass").blur(function(){
+					var nr=$("#pass").val();
+					if(nr==null||nr==""){
+						$(".tb>i").eq(5).show().siblings().hide();
+					}else if(!res.test(nr)){
+						$(".tb>i").eq(3).show().siblings().hide();
+					}else{
+						$(".tb>i").eq(4).show().siblings().hide();
+					}
+				})
+			</script>
+			<!--记住密码-->
+			<div class="weui-panel" style="background: #fff;">
+				<div class="weui-panel__bd">
+					<div class="weui-cell weui-cell_switch">
+						<div class="weui-cell__bd">记住密码</div>
+						<div class="weui-cell__ft">
+							<input class="weui-switch" type="checkbox" checked="checked" />
+						</div>
+					</div>
+					<button class="weui-btn" style="background:#008080;" id="login">登录</button>
+					<div class="weui-cell">
+						<div class="weui-flex" style="text-align: center;width: 100%;">
+							<div class="weui-flex__item">
+								<a class="placeholder" href="zuce.html" style="color: #000;">立即注册</a>
+							</div>
+							<div class="weui-flex__item">
+								<a class="placeholder" href="find.html" style="color: #000;">忘记密码？</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--底部导航-->
+		<div style="height: 100%;">
+			<div class="weui-tab__panel dbdh" style="margin-top: 50px;">
+				<div class="" style="display:none">签到</div>
+				<div class="" style="display:none">单词</div>
+				<div class="" style="display:none">上机</div>
+				<div class="" style="display:none">测试</div>
+				<div class="" style="display:none">更多</div>
+			</div>
+			<div class="weui-tabbar">
+				<a href="#" class="weui-tabbar__item db" id="showAndroidDialog1">
+					<img src="imgs/qd.png" alt="" class="weui-tabbar__icon" />
+					<p class="weui-tabbar__label">签到</p>
+				</a>
+				<a href="#" class="weui-tabbar__item db">
+					<img src="imgs/Aa.png" alt="" class="weui-tabbar__icon" />
+					<p class="weui-tabbar__label">单词</p>
+				</a>
+				<a href="#" class="weui-tabbar__item db">
+					<img src="imgs/compture.png" alt="" class="weui-tabbar__icon" />
+					<p class="weui-tabbar__label">上机</p>
+				</a>
+				<a href="#" class="weui-tabbar__item db">
+					<img src="imgs/test.png" alt="" class="weui-tabbar__icon" />
+					<p class="weui-tabbar__label">测试</p>
+				</a>
+				<a href="#" class="weui-tabbar__item db" id="showIOSActionSheet">
+					<img src="imgs/more.png" alt="" class="weui-tabbar__icon" />
+					<p class="weui-tabbar__label">更多</p>
+				</a>
+			</div>
+		</div>
+		<!--标签弹窗-->
+		<div class="js_dialog" id="androidDialog1" style="opacity: 0; display: none;">
+            <div class="weui-mask"></div>
+            <div class="weui-dialog weui-skin_android">
+                <div class="weui-dialog__hd"><strong class="weui-dialog__title">地理位置授权</strong></div>
+                <div class="weui-dialog__bd">允许http://weixin.zxwyit.com/访问你当前的地理位置信息？</div>
+                <div class="weui-dialog__ft">
+                    <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_default">取消</a>
+                    <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">确认</a>
+                </div>
+            </div>
+        </div>
+        <!--更多弹窗-->
+        <div>
+	        <div class="weui-mask" id="iosMask" style="opacity: 0; display: none;"></div>
+	        <div class="weui-actionsheet" id="iosActionsheet">
+	            <div class="weui-actionsheet__menu">
+	                <div class="weui-actionsheet__cell"><i class="iconfont icon-shangwutubiao-" style="color: #607d8b;font-size:18px"></i>档案录入</div>
+	                <div class="weui-actionsheet__cell"><i class="iconfont icon-qingjiashenhe" style="color: #ff5722;font-size:18px"></i>请假申请</div>
+	                <div class="weui-actionsheet__cell"><i class="iconfont icon-paihangbang-" style="color: #daa520;font-size:18px"></i>排行榜</div>
+	                <div class="weui-actionsheet__cell"><i class="iconfont icon-shezhi" style="font-size:18px"></i>设置</div>
+	            </div>
+	            <div class="weui-actionsheet__action">
+	                <div class="weui-actionsheet__cell" id="iosActionsheetCancel">取消</div>
+	            </div>
+	        </div>
+	    </div>
+		<!--尾部导航栏-->
+		<script type="text/javascript">
+		    $(function(){
+		        $('.weui-tabbar__item').on('click', function () {
+		        	$("#bb").hide();
+		            $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
+		            $(".dbdh>div").eq($(this).index()).show().siblings().hide();
+		        });
+		    });
+		    //签到
+		    $(function(){
+		    	var $androidDialog1 = $('#androidDialog1');
+		        $('#showAndroidDialog1').on('click', function(){
+		            $androidDialog1.fadeIn(200);
+		        });
+		        $('#androidDialog1').on('click', '.weui-dialog__btn', function(){
+		            $(this).parents('.js_dialog').fadeOut(200);
+		        });
+		    });
+		    // 更多
+		    $(function(){
+		        var $iosActionsheet = $('#iosActionsheet');
+		        var $iosMask = $('#iosMask');
+		        function hideActionSheet() {
+		            $iosActionsheet.removeClass('weui-actionsheet_toggle');
+		            $iosMask.fadeOut(200);
+		        }
+		        $iosMask.on('click', hideActionSheet);
+		        $('#iosActionsheetCancel').on('click', hideActionSheet);
+		        $("#showIOSActionSheet").on("click", function(){
+		            $iosActionsheet.addClass('weui-actionsheet_toggle');
+		            $iosMask.fadeIn(200);
+		        });
+		    });
+		    //登录缓存判断
+		    $(".btn").click(function(){
+				var pho=$("#phone").val();
+				var pas=$("#pass").val();
+				var phhc=sessionStorage.getItem("phone");
+				var pahc=sessionStorage.getItem("pass");
+				if(pho==phhc&&pas==pahc){
+					alert("登录成功");
+				}else{
+					alert("登录失败")
+				}
+			})
+		</script>
+	</body>
+</html>

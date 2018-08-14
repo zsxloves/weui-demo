@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width = device-width,initial-scale = 1,user-scalable = 0 ">
+		<title></title>
+		<link rel="stylesheet" href="css/weui.css" />
+		<link rel="stylesheet" href="//at.alicdn.com/t/font_788227_t8z6o1y045c.css" />
+	</head>
+	<body ontouchstart="">
+		<script type="text/javascript" src="js/weui.min.js"></script>
+		<script type="text/javascript" src="js/zepto.min.js"></script>
+		<div class="weui-cell" style="background: #353535;">
+			<a class="weui-cell__hd" style="color: #fff;" href="zuce.html">
+				<i class="iconfont icon-fanhui"></i>返回
+			</a>
+			<div class="weui-cell__bd" style="text-align: center;color: #fff;">学生注册</div>
+			<div class="weui-cell__ft" style="visibility:hidden;">
+				<i class="iconfont icon-fanhui"></i>返回
+			</div>
+		</div>
+		<div class="weui-panel" style="background: #eee;margin-top: 0;padding-bottom: 20px;">
+			<div class="weui-panel__hd zl" style="text-align: center;font-size: 16px;">
+				以下资料需要审核，请认证填写！
+			</div>
+			<div class="weui-panel__bd">
+				<div class="weui-cell" style="padding: 0 5px;border: none;">
+					<div class="weui-cell__hd" style="border: none;">
+						<div style="float: left;">
+							<span class="weui-icon-success-circle"></span>
+						</div>
+						<div class="" style="float: left;margin:3px 0 0 5px;">
+							<p>基本信息</p>
+							<p>第一步</p>
+						</div>
+					</div>
+					<div class="weui-cell__bd" style="border-top:1px solid green;height: 25px;margin: 0 8px;"></div>
+					<div class="weui-cell__ft">
+						<div style="float: left;">
+							<span class="weui-badge" style="background:green;">2</span>
+						</div>
+						<div class="" style="float: left;margin:3px 0 0 5px">
+							<p>学校信息</p>
+							<p style="text-align: left;">第二步</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="weui-cells" style="margin-top: 0;">
+			<div class="weui-cell weui-cell_select weui-cell_select-after">
+		        <div class="weui-cell__hd">
+		            <label class="weui-label">班级:</label>
+		        </div>
+		        <div class="weui-cell__bd">
+		            <select class="weui-select" name="select1">
+		                <option value="1">请选择班级</option>
+		                <option value="2">1班</option>
+		                <option value="3">2班</option>
+		                <option value="4">3班</option>
+		            </select>
+		        </div>
+		    </div>
+		    <div class="weui-cell weui-cell_select weui-cell_select-after">
+		        <div class="weui-cell__hd">
+		            <label class="weui-label">分组:</label>
+		        </div>
+		        <div class="weui-cell__bd">
+		            <select class="weui-select" name="select1">
+		                <option value="1">请选择分组</option>
+		                <option value="2">第1组</option>
+		                <option value="3">第2组</option>
+		                <option value="4">第3组</option>
+		                <option value="5">第4组</option>
+		                <option value="6">第5组</option>
+		            </select>
+		        </div>
+		    </div>
+		    <div class="weui-cell weui-cell_select weui-cell_select-after">
+		        <div class="weui-cell__hd">
+		            <label class="weui-label">角色:</label>
+		        </div>
+		        <div class="weui-cell__bd">
+		            <select class="weui-select" name="select1">
+		                <option value="1">请选择角色</option>
+		                <option value="2">成员</option>
+		                <option value="3">组长</option>
+		                <option value="4">班长</option>
+		                <option value="5">学委</option>
+		                <option value="6">测试人员</option>
+		            </select>
+		        </div>
+		    </div>
+			<div class="weui-cell" style="border-bottom: 1px solid #e5e5e5;">
+				<button id="tj" class="weui-btn weui-btn_disabled weui-btn_primary">完成注册</button>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var s=$(".weui-select");
+		for(var i=0;i<s.length;i++){
+			s[i].index=i;
+			s[i].onchange=function(){
+				if(s[0].value!=1&&s[1].value!=1&&s[2].value!=1){
+					$("#tj").removeClass("weui-btn_disabled");
+				}else{
+					$("#tj").addClass("weui-btn_disabled");
+				}
+			}
+		}
+		
+		$("#tj").click(function(){
+			if(!$("#tj").hasClass("weui-btn_disabled")){
+				open("login.html","_self");
+			}
+		})
+	</script>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width = device-width,initial-scale = 1,user-scalable = 0 ">
+		<title></title>
+		<link rel="stylesheet" href="css/weui.css" />
+		<style type="text/css">
+			#xx .weui-cell__ft i{
+				float: left;
+			}
+			#xx .weui-cell__ft i:nth-child(1){
+				line-height: 20px;
+			}
+			#yx .weui-cell__ft .fh:nth-child(2),#newm .weui-cell__ft .fh:nth-child(2){
+				display: block;
+			}
+			#xx .weui-cell__ft>i:nth-child(1){
+				display: none;
+			}
+			#yx .weui-cell__hd,#newm .weui-cell__hd{
+				color: red;
+			}
+		</style>
+	</head>
+	<body ontouchstart="">
+		<script type="text/javascript" src="js/weui.min.js"></script>
+		<script type="text/javascript" src="js/zepto.min.js"></script>
+		<div class="weui-cell" style="background: #353535;">
+			<a class="weui-cell__hd" style="color: #fff;" href="yx.html">
+				<i class="iconfont icon-fanhui"></i>返回
+			</a>
+			<div class="weui-cell__bd" style="text-align: center;color: #fff;">通过Email</div>
+			<div class="weui-cell__ft" style="visibility:hidden;">
+				<i class="iconfont icon-fanhui"></i>返回
+			</div>
+		</div>
+		<div class="weui-panel" style="margin-top: 0;">
+			<div class="weui-panel__hd zl" style="text-align: center;font-size: 16px;">
+				验证码发送到你的邮箱，请前往邮箱获取。
+			</div>
+			<div class="weui-panel__bd">
+				<div class="weui-cells" style="margin-top: 0;" id="xx">
+					<div class="weui-cell weui-cells_form" id="yx">
+						<div class="weui-cell__hd">
+							<label class="weui-label" >验证码</label>
+						</div>
+						<div class="weui-cell__bd">
+							<input class="weui-input" placeholder="输入验证码" maxlength="6" type="password">
+						</div>
+						<div class="weui-cell__ft">
+							<i class="weui-icon-clear fh"></i>
+							<i class="weui-icon-warn fh"></i>
+						</div>
+					</div>
+					<div class="weui-cell weui-cells_form" id="newm">
+						<div class="weui-cell__hd">
+							<label class="weui-label">新密码</label>
+						</div>
+						<div class="weui-cell__bd">
+							<input class="weui-input" placeholder="输入新密码">
+						</div>
+						<div class="weui-cell__ft">
+							<i class="weui-icon-clear fh"></i>
+							<i class="weui-icon-warn fh"></i>
+						</div>
+					</div>
+					<div class="weui-cell weui-cells_form" id="newq">
+						<div class="weui-cell__hd">
+							<label class="weui-label">新密码确认</label>
+						</div>
+						<div class="weui-cell__bd">
+							<input class="weui-input" placeholder="请确认新密码" type="password">
+						</div>
+						<div class="weui-cell__ft">
+							<i class="weui-icon-clear fh"></i>
+							<i class="weui-icon-warn fh"></i>
+						</div>
+					</div>
+					<div class="weui-cell" style="border-bottom: 1px solid #e5e5e5;">
+						<button id="tj" class="weui-btn weui-btn_primary">确定</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	    <div id="succ" style="opacity: 0;display: none;">
+	        <div class="weui-mask_transparent"></div>
+	        <div class="weui-toast">
+	            <i class="weui-icon-success-no-circle weui-icon_toast"></i>
+	            <p class="weui-toast__content">已发送</p>
+	        </div>
+	    </div>
+		<div id="fail" style="opacity: 0;display: none;">
+	        <div class="weui-mask_transparent"></div>
+	        <div class="weui-toast">
+	            <i class="weui-icon-warn weui-icon_msg weui-icon_toast" style="font-size: 65px;"></i>
+	            <p class="weui-toast__content">2次密码不相同</p>
+	        </div>
+	    </div>
+		
+	</body>
+	<script type="text/javascript">
+		//验证
+		$("#yx input").blur(function yzyx(){
+			var txt=$("#yx input").val();
+			if(txt==""||txt==null){
+				$("#yx .fh").eq(1).show().siblings().hide();
+				$("#yx .weui-label").css("color","red");
+			}else{
+				$("#yx .fh").eq(1).hide().siblings().show();
+				$("#yx .weui-label").css("color","#000");
+			}
+		})
+		function yz(id){
+			var txt=$("id input").val();
+			var reg=/^\w{6,}$/;
+			if(reg.test(txt)){
+				$("id .fh").eq(1).hide().siblings().show();
+				$("id .weui-label").css("color","#000");
+			}else{
+				$("id .weui-label").css("color","red");
+				if(txt==""||txt==null){
+					$("id .fh").eq(1).show().siblings().hide();
+				}else{
+					$("id .fh").eq(1).show().siblings().show();
+				}
+			}
+		}
+		$("#newm input").blur(function(){
+			var txt=$("#newm input").val();
+			var reg=/^\w{6,}$/;
+			if(reg.test(txt)){
+				$("#newm .fh").eq(1).hide().siblings().show();
+				$("#newm .weui-label").css("color","#000");
+			}else{
+				$("#newm .weui-label").css("color","red");
+				if(txt==""||txt==null){
+					$("#newm .fh").eq(1).show().siblings().hide();
+				}else{
+					$("#newm .fh").eq(1).show().siblings().show();
+				}
+			}
+		});
+		$("#newq input").blur(function(){
+			var txt=$("#newq input").val();
+			var reg=/^\w{6,}$/;
+			if(reg.test(txt)){
+				$("#newq .fh").eq(1).hide().siblings().show();
+				$("#newq .weui-label").css("color","#000");
+			}else{
+				$("#newq .weui-label").css("color","red");
+				if(txt==""||txt==null){
+					$("#newq .fh").eq(1).show().siblings().hide();
+				}else{
+					$("#newq .fh").eq(1).show().siblings().show();
+				}
+			}
+		});
+		var clea=$(".weui-icon-clear");
+		for(var i=0;i<clea.length;i++){
+			clea[i].index=i;
+			clea[i].onclick=function(){
+				$(".weui-input").eq(this.index).val("");
+				clea[this.index].style.display="none";
+			}
+		}
+		//弹窗
+		$(function(){
+	        var succ = $('#succ');
+	        $(window).on('load', function(){
+	            if (succ.css('display') != 'none') return;
+	
+	            succ.fadeIn(100);
+	            setTimeout(function () {
+	                succ.fadeOut(100);
+	            }, 2000);
+	        });
+	    });
+	    function dj(){
+			var newm=$("#newm input").val();
+			var newq=$("#newq input").val();
+			var fail = $("#fail");
+			if(newm==newq&&newm!=null&&newm!=""){
+				open("login.html","_self");
+			}else{
+            	if (fail.css('display') != 'none') return;
+	            fail.fadeIn(100);
+	            setTimeout(function () {
+	                fail.fadeOut(100);
+	            }, 2000);
+			}
+		}
+	    $("#tj").click(dj);
+	    //键盘事件
+	    $("#newq input").keydown(function(event){
+	    	if(event.keyCode=="13"){
+	    		dj();
+	    	}
+	    })
+	    $("#newm input").keydown(function(event){
+	    	if(event.keyCode=="13"){
+	    		dj();
+	    	}
+	    })
+	    $("#yx input").keydown(function(event){
+	    	if(event.keyCode=="13"){
+	    		dj();
+	    	}
+	    })
+	</script>
+</html>
